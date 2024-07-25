@@ -9,12 +9,12 @@ def pascal_triangle(n):
     if n <= 0:
         return []
 
-    for x in totall_ran(n):
+    for x in ran(n):
         if x == 0:
             tri.append([1])
         else:
             r = []
-            for y in totall_ran(x + 1):
+            for y in ran(x + 1):
                 if y == 0 or y == x:
                     r.append(1)
                 else:
