@@ -36,7 +36,7 @@ try:
 except Exception as error:
     pass
 
-if __name__ == "__main__":
+finally:
     print(f"File size: {length}")
     for case_num, case_size in sorted(status_case.items()):
         if case_size > 0:
