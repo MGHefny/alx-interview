@@ -18,7 +18,7 @@ length_count = 0
 
 try:
     for line in sys.stdin:
-        part_list = line.split(" ")
+        part_list = line.split("")
         if len(part_list) > 4:
             st_code = part_list[-2]
             list_siz = int(part_list[-1])
