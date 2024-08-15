@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-"""ead stdin line by line"""
 
 import sys
 
@@ -16,27 +15,31 @@ status_case = {
 length = 0
 length_count = 0
 
-try:
-    for line in sys.stdin:
-        part_list = line.split("")
-        if len(part_list) > 4:
-            st_code = part_list[-2]
-            list_siz = int(part_list[-1])
-            if st_code in status_case:
-                status_case[st_code] += 1
-            length += list_siz
-            length_count += 1
+if __name__ == "__main__":
+    try:
+        for line in sys.stdin:
+            part_list = line.split(" ")
+            if len(part_list) > 4:
+                st_code = part_list[-2]
+                try:
+                    list_siz = int(part_list[-1])
+                except ValueError:
+                    continue  # Skip lines where the size is not an integer
+                if st_code in status_case:
+                    status_case[st_code] += 1
+                length += list_siz
+                length_count += 1
 
-        if length_count == 10:
-            length_count = 0
-            print(f"File list_siz: {length}")
-            for case_num, case_size in sorted(status_case.items()):
-                if case_size > 0:
-                    print(f"{case_num}: {case_size}")
-except Exception as error:
-    pass
+            if length_count == 10:
+                length_count = 0
+                print(f"File list_siz: {length}")
+                for case_num, case_size in sorted(status_case.items()):
+                    if case_size > 0:
+                        print(f"{case_num}: {case_size}")
 
-if __name__ == '__main__':
+    except Exception as error:
+        print(f"An error occurred: {error}")
+
     print(f"File size: {length}")
     for case_num, case_size in sorted(status_case.items()):
         if case_size > 0:
