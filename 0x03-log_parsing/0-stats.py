@@ -15,7 +15,8 @@ status_case = {
 length = 0
 length_count = 0
 
-if __name__ == "__main__":
+def process_lines():
+    global length, length_count
     try:
         for line in sys.stdin:
             part_list = line.split(" ")
@@ -36,10 +37,11 @@ if __name__ == "__main__":
                 for case_num, case_size in sorted(status_case.items()):
                     if case_size > 0:
                         print(f"{case_num}: {case_size}")
-
     except Exception as error:
         print(f"An error occurred: {error}")
 
+if __name__ == "__main__":
+    process_lines()
     print(f"File size: {length}")
     for case_num, case_size in sorted(status_case.items()):
         if case_size > 0:
