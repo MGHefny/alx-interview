@@ -2,6 +2,8 @@
 """
 Task 0 UTF-8 Validation
 """
+
+
 def validUTF8(data):
     """
     return the int of list valid utf-8
