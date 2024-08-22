@@ -23,9 +23,10 @@ def validUTF8(data):
                 """char encod utf-8 1 byte"""
             elif x >> 5 == 0b110:
                 co_byte = 1
-                """char encod utf-8 fals"""
+                """char encod utf-8 1 byte"""
             elif x >> 5 == 0b1110:
                 co_byte = 1
+                """char encod utf-8 fals"""
             elif x >> 7 == 0b1:
                 return False
         else:
