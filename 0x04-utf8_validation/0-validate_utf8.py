@@ -15,7 +15,7 @@ def validUTF8(data):
         # Check the number of leading 1s
         if co_byte == 0:
             """char encod utf-8 1 byte"""
-            if x >> 5 == 0b110:
+            if x >> 5 == 0b110 or x >> 5 == 0b1110:
                 co_byte = 1
                 """char encod utf-8 2 byte"""
             elif x >> 4 == 0b1110:
