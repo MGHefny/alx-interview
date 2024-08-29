@@ -5,7 +5,16 @@ import sys
 
 
 def possition(q, c, b):
-    """ the index """
+    """Check if c-th queen can be placed in b-th column.
+
+    Args:
+        a: List representing the board configuration.
+        c: Current row to check.
+        b: Column to place the queen.
+
+    Returns:
+        bool: True if placement is valid, False otherwise.
+    """
     for z in range(1, c):
         if q[z] == b or abs(q[z] - b) == abs(z - c):
             return False
@@ -13,7 +22,14 @@ def possition(q, c, b):
 
 
 def n_queen(a, q, c, result):
-    """" the nqueen function backtracking """
+    """Solve the N Queens problem using backtracking.
+
+    Args:
+        a: Total number of queens.
+        a: List representing the board configuration.
+        c: Current row to check.
+        result: List to collect solutions.
+    """
     for b in range(1, a + 1):
         if possition(q, c, b):
             q[c] = b
