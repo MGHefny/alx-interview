@@ -1,60 +1,64 @@
 #!/usr/bin/python3
-""" N Queens function """
+"""N Queens algorithm with backtracking"""
 
 import sys
 
-
-def possition(q, c, b):
-    """Check if c-th queen can be placed in b-th column.
+def place(x, k, i):
+    """Check if k-th queen can be placed in i-th column.
 
     Args:
-        a: List representing the board configuration.
-        c: Current row to check.
-        b: Column to place the queen.
+        x: List representing the board configuration.
+        k: Current row to check.
+        i: Column to place the queen.
 
     Returns:
         bool: True if placement is valid, False otherwise.
     """
-    for z in range(1, c):
-        if q[z] == b or abs(q[z] - b) == abs(z - c):
+    for j in range(1, k):
+        if (x[j] == i or
+                abs(x[j] - i) == abs(j - k)):
             return False
     return True
 
-
-def n_queen(a, q, c, result):
+def n_queen(n, x, k, res):
     """Solve the N Queens problem using backtracking.
 
     Args:
-        a: Total number of queens.
-        a: List representing the board configuration.
-        c: Current row to check.
-        result: List to collect solutions.
+        n: Total number of queens.
+        x: List representing the board configuration.
+        k: Current row to check.
+        res: List to collect solutions.
     """
-    for b in range(1, a + 1):
-        if possition(q, c, b):
-            q[c] = b
-            if c == a:
-                sol = [[b - 1, q[b] - 1] for b in range(1, a + 1)]
-                result.append(sol)
+    for i in range(1, n + 1):
+        if place(x, k, i):
+            x[k] = i
+            if k == n:
+                solution = [[i - 1, x[i] - 1] for i in range(1, n + 1)]
+                res.append(solution)
             else:
-                n_queen(a, q, c + 1, result)
+                n_queen(n, x, k + 1, res)
 
-
-""" this the main function to main progress """
+# Command-line argument handling
 if len(sys.argv) != 2:
     print("Usage: nqueens N")
     sys.exit(1)
-N = sys.argv[1]
+
 try:
-    N = int(N)
+    n = int(sys.argv[1])
 except ValueError:
     print("N must be a number")
     sys.exit(1)
-if N < 4:
+
+if n < 4:
     print("N must be at least 4")
     sys.exit(1)
-q = [0] * (N + 1)
-result = []
-n_queen(N, q, 1, result)
-for sol in result:
-    print(sol)
+
+# Initialize board and results list
+x = [0] * (n + 1)
+res = []
+
+# Solve the N Queens problem and print results
+n_queen(n, x, 1, res)
+
+for solution in res:
+    print(solution)
