@@ -1,34 +1,34 @@
 #!/usr/bin/node
-const a = process.a;
-const f_url = 'https://swapi-api.alx-tools.com/api/films/';
-const m_url = `${f_url}${a[3]}/`;
+const argv = process.argv;
+const urlFilm = 'https://swapi-api.hbtn.io/api/films/';
+const urlMovie = `${urlFilm}${argv[2]}/`;
 
-const req = require('request');
+const request = require('request');
 
-req(m_url, function (error, response, body) {
+request(urlMovie, function (error, response, body) {
   if (error == null) {
-    const char_body = JSON.parse(body);
-    const chara = char_body.chara;
+    const fbody = JSON.parse(body);
+    const characters = fbody.characters;
 
-    if (chara && chara.length > 0) {
-      const l_max = chara.length;
-      ReqChar(0, chara[0], chara, l_max);
+    if (characters && characters.length > 0) {
+      const limit = characters.length;
+      CharRequest(0, characters[0], characters, limit);
     }
   } else {
     console.log(error);
   }
 });
 
-function ReqChar (n_id, a_url, chara, l_max) {
-  if (n_id === l_max) {
+function CharRequest (idx, url, characters, limit) {
+  if (idx === limit) {
     return;
   }
-  req(a_url, function (error, response, body) {
+  request(url, function (error, response, body) {
     if (!error) {
-      const e_charb = JSON.parse(body);
-      console.log(e_charb.name);
-      n_id++;
-      ReqChar(n_id, chara[n_id], chara, l_max);
+      const rbody = JSON.parse(body);
+      console.log(rbody.name);
+      idx++;
+      CharRequest(idx, characters[idx], characters, limit);
     } else {
       console.error('error:', error);
     }
