@@ -17,7 +17,6 @@ def makeChange(coins, total):
             if x >= c:
                 co_mine[x] = min(co_mine[x], co_mine[x - c] + 1)
 
-
     """ re value of mini numb
     """
     if co_mine[total] != float('inf'):
