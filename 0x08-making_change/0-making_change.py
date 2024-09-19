@@ -12,9 +12,11 @@ def makeChange(coins, total):
     co_mine = [float('inf')] * (total + 1)
     co_mine[0] = 0
 
-    for c in coins:
-        for x in range(c, total + 1):
-            co_mine[x] = min(co_mine[x], co_mine[x - c] + 1)
+    for x in range(total + 1):
+        for c in coins:
+            if x >= c:
+                co_mine[x] = min(co_mine[x], co_mine[x - c] + 1)
+
 
     """ re value of mini numb
     """
